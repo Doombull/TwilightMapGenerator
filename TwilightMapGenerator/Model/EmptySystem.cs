@@ -21,7 +21,7 @@ namespace TwilightMapGenerator.Model
 
 		public string GetName()
 		{
-			return "Empty" + Random.Next(1, 5);
+			return "Tile-Empty" + Random.Next(1, 5);
 		}
 
 		public double GetValue()

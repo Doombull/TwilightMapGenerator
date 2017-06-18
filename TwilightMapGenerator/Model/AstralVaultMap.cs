@@ -21,7 +21,13 @@ namespace TwilightMapGenerator.Model
 
 			StringBuilder generatedSystems = new StringBuilder();
 			string systemTemplate = "{{\"id\":\"{0}\",\"x\":{1},\"y\":{2},\"q\":{3},\"r\":{4},\"panel\":\"{5}\",\"rotation\":0}}";
-			string map = "{{\"map\":[{{\"id\":\"Tile-Mecatol_Rex\",\"x\":0,\"y\":0,\"q\":0,\"r\":0,\"panel\":\"Planets\",\"rotation\":0}},{0}]}}";
+			string map = "{{\"map\":[{{\"id\":\"Tile-Mecatol_Rex\",\"x\":0,\"y\":0,\"q\":0,\"r\":0,\"panel\":\"Planets\",\"rotation\":0}}," +
+				"{{\"id\":\"Tile-Nexus\",\"x\":1469.25,\"y\":1979.3010603493344,\"q\":3,\"r\":-5,\"panel\":\"Planets\",\"rotation\":0}}," +
+				"{{\"id\":\"Token-DistantSuns-Custodians-Fighter\",\"x\":-81.67085384926918,\"y\":-151.8745125298674,\"panel\":\"Tokens\",\"rotation\":0}}," +
+				"{{\"id\":\"Token-DistantSuns-Custodians-Ground\",\"x\":63.11250061415103,\"y\":-41.157829704899086,\"panel\":\"Tokens\",\"rotation\":0}}," +
+				"{{\"id\":\"Token-Artifact-Back\",\"x\":1376.094182825485,\"y\":1874.3351800554014,\"panel\":\"Tokens\",\"rotation\":0}}," +
+				"{{\"id\":\"Token-Artifact-Back\",\"x\":-78.5419970788048,\"y\":23.3883623891777,\"panel\":\"Tokens\",\"rotation\":0}}," +
+				"{0}]}}";
 			
 			foreach (Sector sector in Sectors)
 			{

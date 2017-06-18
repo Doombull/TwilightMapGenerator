@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.IO;
 using System.Text;
@@ -14,18 +15,25 @@ namespace GeneratorHarness
 	{
 		static void Main(string[] args)
 		{
+			double sectorValueTarget = Double.Parse(ConfigurationSettings.AppSettings["SectorValueTarget"]);
+			double sectorValueMargin = Double.Parse(ConfigurationSettings.AppSettings["SectorValueMargin"]);
+			double systemValueMax = Double.Parse(ConfigurationSettings.AppSettings["SystemValueMax"]);
+
 			var sectors = new List<Sector>();
-			var systems = SystemFactory.GetPlanetSystems();
+			var blockingSystems = SystemFactory.GetBlockingSystems();
+
+			var allSystems = (from s in SystemFactory.GetPlanetSystems()
+							  where s.GetValue() <= systemValueMax
+							  select s).ToList();
 
 			for (int i = 0; i < 6; i++)
 			{
 				Sector sector = new Sector();
 				sectors.Add(sector);
 
-				sector.GetSystems(systems);
-				sector.Systems.Sort();
+				sector.GetSystems(allSystems, blockingSystems, i + 1, sectorValueTarget, sectorValueMargin);
 
-				Console.WriteLine("*** Player {0} ***", i);
+				Console.WriteLine("*** Player {0}: {1} ***", i, sector.Value);
 				foreach (ISystem system in sector.Systems)
 				{
 					Console.WriteLine("{0}: {1}", system.GetName(), system.GetValue());

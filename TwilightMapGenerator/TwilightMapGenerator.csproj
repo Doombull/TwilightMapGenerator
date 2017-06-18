@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="Model\AstralVaultMap.cs" />
     <Compile Include="Model\BlockingSystem.cs" />
     <Compile Include="Model\EmptySystem.cs" />
     <Compile Include="Model\Enums.cs" />
+    <Compile Include="Model\HomeSystem.cs" />
     <Compile Include="Model\IValuator.cs" />
     <Compile Include="Model\MaxOnlyResourceWeightedValuator.cs" />
     <Compile Include="Model\MaxOnlyValuator.cs" />
@@ -51,7 +53,7 @@
     <Compile Include="Model\Planet.cs" />
     <Compile Include="Model\ISystem.cs" />
     <Compile Include="Model\PlanetSystem.cs" />
-    <Compile Include="Model\Random.cs" />
+    <Compile Include="Random.cs" />
     <Compile Include="Model\Sector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemFactory.cs" />

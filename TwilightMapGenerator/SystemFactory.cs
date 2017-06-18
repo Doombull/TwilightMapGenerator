@@ -81,8 +81,8 @@ namespace TwilightMapGenerator
 				}),
 				new PlanetSystem(new Planet[]
 				{
-					new Planet() { Name = "Hercalor", Resource = 0, Influence = 0, TechBonuses = new TechBonus[] { TechBonus.Yellow } },
-					new Planet() { Name = "Tiamat", Resource = 0, Influence = 0, TechBonuses = new TechBonus[] { TechBonus.Yellow } }
+					new Planet() { Name = "Hercalor", Resource = 1, Influence = 0, TechBonuses = new TechBonus[] { TechBonus.Yellow } },
+					new Planet() { Name = "Tiamat", Resource = 1, Influence = 2, TechBonuses = new TechBonus[] { TechBonus.Yellow } }
 				}),
 				new PlanetSystem(new Planet[]
 				{
@@ -201,17 +201,26 @@ namespace TwilightMapGenerator
 				})
 			});
 
+			for (int i = 0; i < 14; i++)
+				systems.Add(new EmptySystem());
+
 			return systems;
 		}
 
-		public static List<BlockingSystem> GetBlockingSystems()
+		public static List<ISystem> GetBlockingSystems()
 		{
-			List<BlockingSystem> systems = new List<BlockingSystem>(new BlockingSystem[]
+			List<ISystem> systems = new List<ISystem>(new ISystem[]
 			{
 				new BlockingSystem() { Name = "Asteroid_Field" },
-				new BlockingSystem() { Name = "Gravity_Rift" },
+				new BlockingSystem() { Name = "Asteroid_Field" },
+				new BlockingSystem() { Name = "Asteroid_Field" },
+				new BlockingSystem() { Name = "Asteroid_Field" },
+				new BlockingSystem() { Name = "Gravity_rift" },
+				new BlockingSystem() { Name = "Ion_Storm" },
 				new BlockingSystem() { Name = "Ion_Storm" },
 				new BlockingSystem() { Name = "Nebula" },
+				new BlockingSystem() { Name = "Nebula" },
+				new BlockingSystem() { Name = "Supernova" },
 				new BlockingSystem() { Name = "Supernova" }
 			});
 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TwilightMapGenerator.Model
 {
-	public class BlockingSystem : ISystem
+	public class HomeSystem : ISystem
 	{
-		public string Name { get; set; }
+		public int Player { get; set; }
 
 		public double x { get; set; }
 		public double y { get; set; }
@@ -16,14 +16,15 @@ namespace TwilightMapGenerator.Model
 		public int q { get; set; }
 		public string Panel { get; set; }
 
-		public BlockingSystem()
+		public HomeSystem(int player)
 		{
-			Panel = "Special";
+			Panel = "Homesystems";
+			Player = player;
 		}
 
 		public string GetName()
 		{
-			return "Tile-" + Name;
+			return Player.ToRomanNumeral(new StringBuilder("Tile-HS_z_", 15));
 		}
 
 		public int CompareTo(ISystem other)

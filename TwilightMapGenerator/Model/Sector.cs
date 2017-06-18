@@ -9,21 +9,39 @@ namespace TwilightMapGenerator.Model
 	public class Sector
 	{
 		public List<ISystem> Systems { get; set; }
+		public double Value { get; set; }
 
-		public Sector()
-		{
-			Systems = new List<ISystem>(6);
-		}
+		public void GetSystems(List<ISystem> allSystems, List<ISystem> blockingSystems, int player, double targetValue, double margin) {
 
-		public void GetSystems(List<ISystem> allSystems) {
-			
-			for (int i = 0; i < 6; i++)
+			while (Value < targetValue - margin)
 			{
-				int number = Random.Next(0, allSystems.Count);
+				Value = 0;
+				Systems = new List<ISystem>(6);
 
-				Systems.Add(allSystems[number]);
-				allSystems.RemoveAt(number);
+				for (int i = 0; i < 4; i++)
+				{
+					var legalSystems = (from s in allSystems
+										where s.GetValue() <= targetValue - Value
+										select s).ToList();
+
+					var system = legalSystems[Random.Next(0, legalSystems.Count)];
+
+					Systems.Add(system);
+
+					Value += system.GetValue();
+				}
 			}
+
+			foreach (ISystem system in Systems)
+				allSystems.Remove(system);
+
+			var blockingSystem = blockingSystems[Random.Next(0, blockingSystems.Count)];
+
+			Systems.Add(blockingSystem);
+			blockingSystems.Remove(blockingSystem);
+
+			Systems.Add(new HomeSystem(player));
+			Systems.Shuffle();
 		}
 	}
 }
