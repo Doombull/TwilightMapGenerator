@@ -22,7 +22,7 @@ namespace TwilightMapGenerator.Model
 				{
 					var legalSystems = (from s in allSystems
 										where s.GetValue() <= targetValue - Value
-										select s).ToList();
+										select s).Except(Systems).ToList();
 
 					var system = legalSystems[Random.Next(0, legalSystems.Count)];
 
